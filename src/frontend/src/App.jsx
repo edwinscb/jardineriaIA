@@ -3,6 +3,7 @@ import { MetricsChart } from "./components/MetricsChart"
 import { CurrentValues } from "./components/CurrentValues"
 import { Footer } from "./components/Footer"
 import { NavBar } from "./components/NavBar"
+import { FeaturesSection } from "./components/FeaturesSection"
 function App() {
   
   return (
@@ -11,6 +12,7 @@ function App() {
       <Banner/>
       <CurrentValues />
       <MetricsChart />
+      <FeaturesSection />
       <Footer />
     </div>
   )

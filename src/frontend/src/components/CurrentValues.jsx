@@ -67,7 +67,7 @@ export const CurrentValues = () => {
   ];
 
   return (
-    <section id="current-values" className="py-12 bg-[#118209]">
+    <section id="current-values" className="py-12 bg-[#92B690]">
       <div className="container mx-auto px-4 mt-8">
         <h2 className="text-3xl font-bold text-center text-[#efefef] mb-8">
           {TRANSLATIONS[currentLang].currentMetricsTitle}

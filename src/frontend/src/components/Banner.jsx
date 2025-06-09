@@ -24,7 +24,7 @@ export const Banner = () => {
   const { currentLang } = useLanguage();
 
   return (
-    <section id="home" className="relative bg-emerald-50 dark:bg-gray-800 overflow-hidden">
+    <section id="home" className="relative bg-[#135611] overflow-hidden">
       <div className="container mx-auto px-4 py-20 md:py-32 lg:py-40 flex items-center justify-between md:flex-row flex-col-reverse">
         <div className="text-center md:text-left md:w-1/2 lg:w-5/12 relative z-10">
           <h1 className="text-4xl sm:text-5xl lg:text-6xl font-extrabold text-emerald-800 dark:text-emerald-300 mb-6 leading-tight">
