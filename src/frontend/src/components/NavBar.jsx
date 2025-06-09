@@ -68,7 +68,14 @@ export const NavBar = () => {
   }, []);
 
   const handleToggle = useCallback(() => setExpanded(prev => !prev), []);
-
+    const scrollToTop = useCallback(() => {
+    window.scrollTo({
+      top: 0,
+      behavior: 'smooth' 
+    });
+    setActiveLink("home");
+    setExpanded(false); 
+  }, []);
   return (
     <nav className="bg-[#616c60] fixed w-full z-50 top-0 start-0 border-b border-gray-700 dark:border-gray-600">
       <div className="max-w-screen-xl flex flex-wrap items-center justify-between mx-auto p-4">
@@ -123,10 +130,16 @@ export const NavBar = () => {
                 ) : (
                   
                   <a
-                    href={`#${item}`}
+                    href={item === "home" ? "#" : `#${item}`} 
                     className={`block py-2 px-3 rounded md:bg-transparent md:p-0 ${activeLink === item ? 'text-white bg-emerald-700 md:text-emerald-700 dark:md:text-emerald-500' : 'text-gray-900 hover:bg-gray-100 md:hover:bg-transparent md:hover:text-emerald-700 dark:text-white dark:hover:bg-gray-700 dark:hover:text-emerald-500 md:dark:hover:bg-transparent dark:border-gray-700'}`}
                     aria-current={activeLink === item ? "page" : undefined}
-                    onClick={() => handleNavLinkClick(item)}
+                    onClick={(e) => {
+                      if (item === "home") {
+                        e.preventDefault();
+                      } else {
+                        handleNavLinkClick(item);
+                      }
+                    }}
                   >
                     {TRANSLATIONS[currentLang][item]}
                   </a>

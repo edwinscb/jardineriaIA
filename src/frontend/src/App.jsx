@@ -1,11 +1,13 @@
+import { Banner } from "./components/Banner"
 import { CurrentValues } from "./components/CurrentValues"
 import { Footer } from "./components/Footer"
 import { NavBar } from "./components/NavBar"
 function App() {
   
   return (
-    <div className="flex flex-col min-h-screen">
+    <div id="home-section" className="flex flex-col min-h-screen">
       <NavBar />
+      <Banner/>
       <CurrentValues />
       <Footer />
     </div>
