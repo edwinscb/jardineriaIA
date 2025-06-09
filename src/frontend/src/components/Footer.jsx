@@ -25,7 +25,7 @@ export const Footer = () => {
 
   return (
     <footer className="bg-[#616c60] shadow-inner mt-12 py-8">
-      <div className="container mx-auto px-4 text-center">
+      <div className="container mx-auto px-5 text-center">
 
         <a href="/" className="inline-flex items-center justify-center space-x-2 mb-4">
           <img src={principalLogo} alt="GitHub" className="w-9" />
