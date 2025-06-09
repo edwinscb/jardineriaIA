@@ -15,8 +15,9 @@ const TRANSLATIONS = {
     title: "Gardening AI",
     home: "Home",
     demo: "Demo",
+    currentValues: "Current Values",
+    charts: "Charts",
     portafolio: "my Portfolio",
-    metrics: "Metrics",
     repo: "Repository",
     language: "Language",
     openMenu: "Open main menu",
@@ -26,8 +27,9 @@ const TRANSLATIONS = {
     title: "Jardinería IA",
     home: "Inicio",
     demo: "Demostración",
+    currentValues: "Valores Actuales",
+    charts: "Gráficas",               
     portafolio: "mi portafolio",
-    metrics: "Métricas",
     repo: "Repositorio",
     language: "Idioma",
     openMenu: "Abrir menú principal", 
@@ -35,7 +37,7 @@ const TRANSLATIONS = {
   }
 };
 
-const NAV_ITEMS = ["home", "demo", "metrics", "portafolio"];
+const NAV_ITEMS = ["home", "demo", "currentValues", "charts", "portafolio"];
 
 const LanguageSelector = ({ currentLang, toggleLanguage }) => (
   <div
@@ -130,12 +132,18 @@ export const NavBar = () => {
                 ) : (
                   
                   <a
-                    href={item === "home" ? "#" : `#${item}`} 
+                    href={
+                      item === "home" ? "#home" :
+                      item === "currentValues" ? "#current-values" : 
+                      item === "charts" ? "#metrics" : 
+                      `#${item}`
+                    }
                     className={`block py-2 px-3 rounded md:bg-transparent md:p-0 ${activeLink === item ? 'text-white bg-emerald-700 md:text-emerald-700 dark:md:text-emerald-500' : 'text-gray-900 hover:bg-gray-100 md:hover:bg-transparent md:hover:text-emerald-700 dark:text-white dark:hover:bg-gray-700 dark:hover:text-emerald-500 md:dark:hover:bg-transparent dark:border-gray-700'}`}
                     aria-current={activeLink === item ? "page" : undefined}
                     onClick={(e) => {
                       if (item === "home") {
                         e.preventDefault();
+                        scrollToTop();
                       } else {
                         handleNavLinkClick(item);
                       }

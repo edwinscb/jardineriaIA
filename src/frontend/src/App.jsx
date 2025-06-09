@@ -1,4 +1,5 @@
 import { Banner } from "./components/Banner"
+import { MetricsChart } from "./components/MetricsChart"
 import { CurrentValues } from "./components/CurrentValues"
 import { Footer } from "./components/Footer"
 import { NavBar } from "./components/NavBar"
@@ -9,6 +10,7 @@ function App() {
       <NavBar />
       <Banner/>
       <CurrentValues />
+      <MetricsChart />
       <Footer />
     </div>
   )
