@@ -12,6 +12,7 @@ const LANGUAGES = {
 
 const TRANSLATIONS = {
   [LANGUAGES.EN]: {
+    title: "Gardening AI",
     home: "Home",
     demo: "Demo",
     portafolio: "my Portfolio",
@@ -22,6 +23,7 @@ const TRANSLATIONS = {
     closeMenu: "Close main menu"
   },
   [LANGUAGES.ES]: {
+    title: "Jardinería IA",
     home: "Inicio",
     demo: "Demostración",
     portafolio: "mi portafolio",
@@ -73,7 +75,7 @@ export const NavBar = () => {
         
         <a href="/" className="flex items-center space-x-3 rtl:space-x-reverse">
           <img src={principalLogo} alt="GitHub" className="w-9" />
-          <span className="self-center text-2xl font-semibold whitespace-nowrap text-emerald-800 dark:text-white">Jardinería IA</span>
+          <span className="self-center text-2xl font-semibold whitespace-nowrap text-emerald-800 dark:text-white">{TRANSLATIONS[currentLang].title}</span>
         </a>
         <div className="flex md:order-2 space-x-3 md:space-x-0 rtl:space-x-reverse items-center">
           
