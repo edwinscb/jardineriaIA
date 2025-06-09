@@ -1,11 +1,11 @@
-import { useLanguage } from '../context/LanguageContext.jsx';
+import { useLanguage } from '../contexts/LanguageContext.jsx';
 
 const IconRealTime = '📊';
 const IconAlerts = '🔔';
 const IconDiagnosis = '🔍';
 const IconTips = '💡';
 const IconAutomation = '⚙️'; 
-const IconCommunity = '🤝';  
+const IconCommunity = '🤝';  
 
 const LANGUAGES = {
   EN: 'en',
@@ -30,10 +30,10 @@ const TRANSLATIONS = {
     feature4Desc: "Move beyond guesswork with data-driven advice. Based on your plant's specific species, growth stage, and real-time environmental data, Jardinería IA provides **tailored recommendations for watering schedules, optimal fertilization, pruning techniques, and overall care strategies**. Cultivate with confidence, knowing you're providing the best possible environment.",
     
     feature5Title: "Growth Tracking & History (Future)",
-    feature5Desc: "Monitor your plant's progress over time. View historical data, track growth patterns, and analyze trends to understand long-term health and make informed decisions for future cultivation cycles.", // Ejemplo de futura característica
+    feature5Desc: "Monitor your plant's progress over time. View historical data, track growth patterns, and analyze trends to understand long-term health and make informed decisions for future cultivation cycles.",
     
     feature6Title: "Community & Sharing (Future)",
-    feature6Desc: "Connect with a vibrant community of plant lovers. Share your gardening successes, seek advice, and discover new tips and tricks from experienced enthusiasts worldwide." // Ejemplo de futura característica
+    feature6Desc: "Connect with a vibrant community of plant lovers. Share your gardening successes, seek advice, and discover new tips and tricks from experienced enthusiasts worldwide."
   },
   [LANGUAGES.ES]: {
     featuresTitle: "Desbloquea Todo el Potencial de Tu Jardín",
@@ -52,10 +52,10 @@ const TRANSLATIONS = {
     feature4Desc: "Deja de adivinar con consejos basados en datos. Según la especie específica de tu planta, la etapa de crecimiento y los datos ambientales en tiempo real, Jardinería IA proporciona **recomendaciones personalizadas para programas de riego, fertilización óptima, técnicas de poda y estrategias generales de cuidado**. Cultiva con confianza, sabiendo que estás proporcionando el mejor ambiente posible.",
     
     feature5Title: "Seguimiento y Historial de Crecimiento (Futuro)",
-    feature5Desc: "Monitorea el progreso de tu planta a lo largo del tiempo. Visualiza datos históricos, rastrea patrones de crecimiento y analiza tendencias para comprender la salud a largo plazo y tomar decisiones informadas para futuros ciclos de cultivo.", // Ejemplo de futura característica
+    feature5Desc: "Monitorea el progreso de tu planta a lo largo del tiempo. Visualiza datos históricos, rastrea patrones de crecimiento y analiza tendencias para comprender la salud a largo plazo y tomar decisiones informadas para futuros ciclos de cultivo.",
     
     feature6Title: "Comunidad y Compartir (Futuro)",
-    feature6Desc: "Conéctate con una vibrante comunidad de amantes de las plantas. Comparte tus éxitos de jardinería, busca consejos y descubre nuevos trucos y tips de entusiastas experimentados de todo el mundo." // Ejemplo de futura característica
+    feature6Desc: "Conéctate con una vibrante comunidad de amantes de las plantas. Comparte tus éxitos de jardinería, busca consejos y descubre nuevos trucos y tips de entusiastas experimentados de todo el mundo."
   }
 };
 
@@ -87,16 +87,15 @@ export const FeaturesSection = () => {
       title: TRANSLATIONS[currentLang].feature4Title,
       description: TRANSLATIONS[currentLang].feature4Desc
     },
-
   ];
 
   return (
-    <section id="features" className="py-16 bg-white dark:bg-gray-900">
+    <section id="features" className="py-16 bg-[#92B690]">
       <div className="container mx-auto px-4">
-        <h2 className="text-3xl sm:text-4xl font-bold text-center text-emerald-800 dark:text-emerald-400 mb-4">
+        <h2 className="text-white text-3xl sm:text-4xl font-bold text-center mb-4">
           {TRANSLATIONS[currentLang].featuresTitle}
         </h2>
-        <p className="text-lg text-gray-700 dark:text-gray-300 text-center max-w-3xl mx-auto mb-12">
+        <p className="text-lg text-[#F5F5DC] text-center max-w-3xl mx-auto mb-12">
           {TRANSLATIONS[currentLang].featuresSubtitle}
         </p>
 
@@ -104,15 +103,15 @@ export const FeaturesSection = () => {
           {features.map((feature) => (
             <div
               key={feature.id}
-              className="bg-gray-50 dark:bg-gray-800 rounded-lg shadow-lg p-6 flex flex-col items-start text-left transition-transform hover:scale-105 duration-300 border border-transparent hover:border-emerald-500"
+              className="bg-white rounded-lg shadow-lg p-6 flex flex-col items-start text-left transition-transform hover:scale-105 duration-300 border border-[#A7D9C3] hover:border-[#135611]"
             >
-              <div className="text-5xl text-emerald-600 dark:text-emerald-400 mb-4">
+              <div className="text-5xl text-[#135611] mb-4">
                 {feature.icon}
               </div>
-              <h3 className="text-xl font-semibold text-gray-800 dark:text-white mb-3">
+              <h3 className="text-xl font-semibold text-[#135611] mb-3">
                 {feature.title}
               </h3>
-              <p className="text-gray-600 dark:text-gray-300">
+              <p className="text-[#616c60]">
                 {feature.description}
               </p>
             </div>

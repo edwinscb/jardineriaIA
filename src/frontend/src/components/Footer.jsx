@@ -1,6 +1,7 @@
 import githubLogo from '../assets/img/logos/gitHub-icon.svg'; 
-import { useLanguage } from '../context/LanguageContext.jsx'; 
+import { useLanguage } from '../contexts/LanguageContext.jsx';
 import principalLogo from "../assets/img/logos/principallogo.svg";
+
 const LANGUAGES = {
   EN: 'en',
   ES: 'es'
@@ -26,22 +27,22 @@ export const Footer = () => {
   return (
     <footer className="bg-[#616c60] shadow-inner mt-12 py-8">
       <div className="container mx-auto px-5 text-center">
-
-        <a href="/" className="inline-flex items-center justify-center space-x-2 mb-4">
-          <img src={principalLogo} alt="GitHub" className="w-9" />
-          <span className="text-xl font-bold text-emerald-800 dark:text-white">{TRANSLATIONS[currentLang].title}</span>
+        <a href="#home-section" className="inline-flex items-center justify-center space-x-2 mb-4"
+        >
+          <img src={principalLogo} alt="Logo Jardinería IA" className="w-9" />
+          <span className="text-xl font-bold text-white hover:text-[#A7D9C3] transition-colors">
+            {TRANSLATIONS[currentLang].title}
+          </span>
         </a>
-
-        <p className="text-gray-600 dark:text-gray-400 text-sm mb-4">
+        <p className="text-gray-200 text-sm mb-4">
           © {currentYear} {TRANSLATIONS[currentLang].footerCopyright}
         </p>
-
         <div className="flex justify-center items-center">
           <a
-            href="https://github.com/edwinscb/VolleyballTracking"
+            href="https://github.com/edwinscb/jardineriaIA" 
             target="_blank"
             rel="noopener noreferrer"
-            className="inline-flex items-center space-x-2 text-gray-700 hover:text-emerald-700 dark:text-gray-300 dark:hover:text-emerald-500 transition-colors"
+            className="inline-flex items-center space-x-2 text-white hover:text-[#A7D9C3] transition-colors"
             aria-label={TRANSLATIONS[currentLang].viewOnGitHub}
           >
             <img src={githubLogo} alt="GitHub" className="w-6 h-6" />

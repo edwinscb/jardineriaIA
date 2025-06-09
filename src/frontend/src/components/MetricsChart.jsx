@@ -9,7 +9,7 @@ import {
   Tooltip,
   Legend,
 } from 'chart.js';
-import { useLanguage } from '../context/LanguageContext.jsx';
+import { useLanguage } from '../contexts/LanguageContext.jsx';
 
 ChartJS.register(
   CategoryScale,
@@ -57,14 +57,29 @@ export const MetricsChart = () => {
 
   const labels = ['Lun', 'Mar', 'Mié', 'Jue', 'Vie', 'Sáb', 'Dom'];
 
+  const chartLineColors = {
+    humidity: {
+      borderColor: '#A7D9C3',
+      backgroundColor: 'rgba(167, 217, 195, 0.2)',
+    },
+    temperature: {
+      borderColor: '#f87171',
+      backgroundColor: 'rgba(248, 113, 113, 0.2)',
+    },
+    light: {
+      borderColor: '#fbbf24',
+      backgroundColor: 'rgba(251, 191, 36, 0.2)',
+    }
+  };
+
   const humidityData = {
     labels,
     datasets: [
       {
         label: TRANSLATIONS[currentLang].humidityYAxis,
         data: [65, 59, 80, 81, 56, 55, 60],
-        borderColor: '#34d399',
-        backgroundColor: 'rgba(52, 211, 153, 0.2)',
+        borderColor: chartLineColors.humidity.borderColor,
+        backgroundColor: chartLineColors.humidity.backgroundColor,
         fill: true,
         tension: 0.3,
       },
@@ -77,7 +92,7 @@ export const MetricsChart = () => {
       {
         label: TRANSLATIONS[currentLang].tempYAxis,
         data: [22, 24, 23, 25, 24, 26, 25],
-        borderColor: '#f87171', 
+        borderColor: chartLineColors.temperature.borderColor,
         backgroundColor: 'rgba(248, 113, 113, 0.2)',
         fill: true,
         tension: 0.3,
@@ -91,12 +106,20 @@ export const MetricsChart = () => {
       {
         label: TRANSLATIONS[currentLang].lightYAxis,
         data: [7000, 8500, 7800, 9000, 8200, 9500, 8800],
-        borderColor: '#fbbf24',
+        borderColor: chartLineColors.light.borderColor,
         backgroundColor: 'rgba(251, 191, 36, 0.2)',
         fill: true,
         tension: 0.3,
       },
     ],
+  };
+
+  // Ajuste de colores para elementos de la gráfica para un fondo más claro
+  const chartTextColors = {
+    title: '#135611', // Verde Oscuro para títulos de gráficas (se ve bien sobre blanco)
+    labels: '#616c60', // Verde Grisáceo Oscuro para etiquetas de ejes y ticks
+    grid: '#e5e7eb',   // Gris muy claro para las líneas de la cuadrícula
+    legend: '#616c60'  // Verde Grisáceo Oscuro para las leyendas
   };
 
   const baseChartOptions = {
@@ -106,12 +129,23 @@ export const MetricsChart = () => {
       legend: {
         display: true,
         labels: {
-          color: currentLang === LANGUAGES.EN ? '#4b5563' : '#d1d5db',
+          color: chartTextColors.legend,
+          font: {
+            size: 14
+          }
         }
       },
       tooltip: {
         mode: 'index',
         intersect: false,
+        backgroundColor: '#616c60', // Se mantiene para consistencia del tooltip
+        titleColor: '#A7D9C3',
+        bodyColor: '#F5F5DC',
+        padding: 10,
+        cornerRadius: 4,
+        displayColors: true,
+        borderWidth: 1,
+        borderColor: '#A7D9C3',
       },
     },
     scales: {
@@ -119,22 +153,23 @@ export const MetricsChart = () => {
         title: {
           display: true,
           text: TRANSLATIONS[currentLang].chartXAxis,
-          color: currentLang === LANGUAGES.EN ? '#4b5563' : '#d1d5db',
+          color: chartTextColors.labels,
+          font: { size: 14 }
         },
         ticks: {
-          color: currentLang === LANGUAGES.EN ? '#4b5563' : '#9ca3af',
+          color: chartTextColors.labels,
         },
         grid: {
-          color: currentLang === LANGUAGES.EN ? '#e5e7eb' : '#374151',
+          color: chartTextColors.grid,
         }
       },
       y: {
         ticks: {
-          color: currentLang === LANGUAGES.EN ? '#4b5563' : '#9ca3af',
+          color: chartTextColors.labels,
         },
         grid: {
-          color: currentLang === LANGUAGES.EN ? '#e5e7eb' : '#374151',
-        }
+          color: chartTextColors.grid,
+        },
       },
     },
   };
@@ -146,7 +181,7 @@ export const MetricsChart = () => {
       title: {
         display: true,
         text: TRANSLATIONS[currentLang].humidityChartTitle,
-        color: currentLang === LANGUAGES.EN ? '#065f46' : '#34d399',
+        color: chartTextColors.title,
         font: { size: 20 },
       },
     },
@@ -157,7 +192,8 @@ export const MetricsChart = () => {
         title: {
           display: true,
           text: TRANSLATIONS[currentLang].humidityYAxis,
-          color: currentLang === LANGUAGES.EN ? '#4b5563' : '#d1d5db',
+          color: chartTextColors.labels,
+          font: { size: 14 }
         },
       },
     },
@@ -170,7 +206,7 @@ export const MetricsChart = () => {
       title: {
         display: true,
         text: TRANSLATIONS[currentLang].temperatureChartTitle,
-        color: currentLang === LANGUAGES.EN ? '#b91c1c' : '#f87171',
+        color: chartTextColors.title,
         font: { size: 20 },
       },
     },
@@ -181,7 +217,8 @@ export const MetricsChart = () => {
         title: {
           display: true,
           text: TRANSLATIONS[currentLang].tempYAxis,
-          color: currentLang === LANGUAGES.EN ? '#4b5563' : '#d1d5db',
+          color: chartTextColors.labels,
+          font: { size: 14 }
         },
       },
     },
@@ -194,7 +231,7 @@ export const MetricsChart = () => {
       title: {
         display: true,
         text: TRANSLATIONS[currentLang].lightChartTitle,
-        color: currentLang === LANGUAGES.EN ? '#b45309' : '#fbbf24',
+        color: chartTextColors.title,
         font: { size: 20 },
       },
     },
@@ -205,41 +242,45 @@ export const MetricsChart = () => {
         title: {
           display: true,
           text: TRANSLATIONS[currentLang].lightYAxis,
-          color: currentLang === LANGUAGES.EN ? '#4b5563' : '#d1d5db',
+          color: chartTextColors.labels,
+          font: { size: 14 }
         },
       },
     },
   };
 
-
   return (
-    <section id="metrics" className="py-12 bg-[#02cab2]">
+    // CAMBIO CLAVE AQUÍ: Fondo de la sección a Crema Neutro (#F5F5DC)
+    <section id="metrics" className="py-12 bg-[#F5F5DC]">
       <div className="container mx-auto px-4">
-        <h2 className="text-3xl font-bold text-center text-emerald-800 mb-8">
+        {/* Título principal de la sección: Verde Oscuro (#135611) para un buen contraste con el fondo claro */}
+        <h2 className="text-[#135611] text-3xl font-bold text-center mb-8">
           {TRANSLATIONS[currentLang].metricsSectionTitle}
         </h2>
 
         <div className="grid grid-cols-1 lg:grid-cols-2 xl:grid-cols-3 gap-6">
           
-          <div className="bg-white dark:bg-gray-900 p-6 rounded-lg shadow-md" style={{ height: '400px' }}>
+          <div className="bg-white p-6 rounded-lg shadow-md border border-[#A7D9C3]" style={{ height: '400px' }}>
             {humidityData.datasets[0].data.length > 0 ? (
               <Line data={humidityData} options={humidityOptions} />
             ) : (
-              <p className="text-center text-gray-500 dark:text-gray-400">{TRANSLATIONS[currentLang].noData}</p>
+              <p className="text-center text-gray-700">{TRANSLATIONS[currentLang].noData}</p>
             )}
           </div>
-          <div className="bg-white dark:bg-gray-900 p-6 rounded-lg shadow-md" style={{ height: '400px' }}>
+
+          <div className="bg-white p-6 rounded-lg shadow-md border border-[#A7D9C3]" style={{ height: '400px' }}>
             {temperatureData.datasets[0].data.length > 0 ? (
               <Line data={temperatureData} options={temperatureOptions} />
             ) : (
-              <p className="text-center text-gray-500 dark:text-gray-400">{TRANSLATIONS[currentLang].noData}</p>
+              <p className="text-center text-gray-700">{TRANSLATIONS[currentLang].noData}</p>
             )}
           </div>
-          <div className="bg-white dark:bg-gray-900 p-6 rounded-lg shadow-md" style={{ height: '400px' }}>
+
+          <div className="bg-white p-6 rounded-lg shadow-md border border-[#A7D9C3]" style={{ height: '400px' }}>
             {lightData.datasets[0].data.length > 0 ? (
               <Line data={lightData} options={lightOptions} />
             ) : (
-              <p className="text-center text-gray-500 dark:text-gray-400">{TRANSLATIONS[currentLang].noData}</p>
+              <p className="text-center text-gray-700">{TRANSLATIONS[currentLang].noData}</p>
             )}
           </div>
         </div>

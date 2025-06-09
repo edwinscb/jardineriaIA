@@ -7,12 +7,14 @@ import { FeaturesSection } from "./components/FeaturesSection"
 function App() {
   
   return (
-    <div id="home-section" className="flex flex-col min-h-screen">
+    <div id="home-section" className="flex flex-col min-h-screen bg-[#F5F5DC]">
       <NavBar />
-      <Banner/>
-      <CurrentValues />
-      <MetricsChart />
-      <FeaturesSection />
+      <main className="flex-grow">
+        <Banner />
+        <CurrentValues />
+        <MetricsChart />
+        <FeaturesSection/>
+      </main>
       <Footer />
     </div>
   )

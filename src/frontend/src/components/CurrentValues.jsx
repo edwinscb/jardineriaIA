@@ -1,5 +1,4 @@
-
-import { useLanguage } from '../context/LanguageContext.jsx';
+import { useLanguage } from '../contexts/LanguageContext.jsx';
 
 const LANGUAGES = {
   EN: 'en',
@@ -10,7 +9,7 @@ const TRANSLATIONS = {
   [LANGUAGES.EN]: {
     currentMetricsTitle: "Current Plant Metrics",
     soilHumidity: "Soil Humidity",
-    ambientTemp: "Ambient Temperature",
+    ambientTemp: "Ambient Temp.",
     lightLevel: "Light Level",
     humidityUnit: "%",
     tempUnit: "°C",
@@ -22,7 +21,7 @@ const TRANSLATIONS = {
   [LANGUAGES.ES]: {
     currentMetricsTitle: "Métricas Actuales de la Planta",
     soilHumidity: "Humedad del Suelo",
-    ambientTemp: "Temperatura Ambiental",
+    ambientTemp: "Temp. Ambiental",
     lightLevel: "Nivel de Luz",
     humidityUnit: "%",
     tempUnit: "°C",
@@ -36,6 +35,12 @@ const TRANSLATIONS = {
 export const CurrentValues = () => {
   const { currentLang } = useLanguage();
 
+  const statusColors = {
+    optimal: "text-green-600",
+    low: "text-red-500",
+    high: "text-orange-600"
+  };
+
   const metricsData = [
     {
       id: 'humidity',
@@ -43,8 +48,7 @@ export const CurrentValues = () => {
       value: 65,
       unit: TRANSLATIONS[currentLang].humidityUnit,
       icon: '💧',
-      status: TRANSLATIONS[currentLang].optimal,
-      color: 'text-blue-500'
+      statusKey: 'optimal',
     },
     {
       id: 'temperature',
@@ -52,8 +56,7 @@ export const CurrentValues = () => {
       value: 23,
       unit: TRANSLATIONS[currentLang].tempUnit,
       icon: '🌡️',
-      status: TRANSLATIONS[currentLang].optimal,
-      color: 'text-red-500'
+      statusKey: 'optimal',
     },
     {
       id: 'light',
@@ -61,15 +64,14 @@ export const CurrentValues = () => {
       value: 8000,
       unit: TRANSLATIONS[currentLang].lightUnit,
       icon: '☀️',
-      status: TRANSLATIONS[currentLang].high,
-      color: 'text-yellow-500'
+      statusKey: 'high',
     }
   ];
 
   return (
     <section id="current-values" className="py-12 bg-[#92B690]">
       <div className="container mx-auto px-4 mt-8">
-        <h2 className="text-3xl font-bold text-center text-[#efefef] mb-8">
+        <h2 className="text-3xl font-bold text-center text-white mb-8">
           {TRANSLATIONS[currentLang].currentMetricsTitle}
         </h2>
 
@@ -77,19 +79,20 @@ export const CurrentValues = () => {
           {metricsData.map((metric) => (
             <div
               key={metric.id}
-              className="bg-white dark:bg-gray-900 rounded-lg shadow-md p-6 flex flex-col items-center justify-center transition-transform hover:scale-105 duration-300"
+              className="bg-white rounded-lg shadow-md p-6 flex flex-col items-center justify-center transition-transform hover:scale-105 duration-300 border border-[#A7D9C3]"
             >
-              <div className={`text-5xl mb-3 ${metric.color}`}>
+              <div className={`text-5xl mb-3 ${statusColors[metric.statusKey]}`}>
                 {metric.icon}
               </div>
-              <h3 className="text-xl font-semibold text-gray-800 dark:text-gray-200 mb-2">
+              <h3 className="text-xl font-semibold text-gray-800 mb-2">
                 {metric.name}
               </h3>
-              <p className="text-4xl font-bold text-emerald-700 dark:text-emerald-400 mb-2">
+              {/* CAMBIO CLAVE AQUÍ: text-[#135611] para un verde oscuro y vivo */}
+              <p className="text-4xl font-bold text-[#135611] mb-2">
                 {metric.value} <span className="text-2xl font-normal">{metric.unit}</span>
               </p>
-              <p className={`text-md font-medium ${metric.color}`}>
-                {metric.status}
+              <p className={`text-md font-medium ${statusColors[metric.statusKey]}`}>
+                {TRANSLATIONS[currentLang][metric.statusKey]}
               </p>
             </div>
           ))}
